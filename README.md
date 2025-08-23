@@ -1,1 +1,1 @@
-# shopesphere-api
+# shopsphere-api
