@@ -1,0 +1,39 @@
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+   | \.git 
+   | \.hg 
+   | \.mypy_cache
+   | \.tox
+   | \.venv
+   | _build
+   | buck-out 
+   | build 
+   | dist 
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["app", "tests"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true 
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+
+[tool.pytest.ini_options]
+test_paths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["test_*"]
+addopts = "--cov=app --cov-report=html --cov-report=term-missing --cov-fail-under=90"
