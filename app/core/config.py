@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings
 from pydantic import field_validator
 from pydantic_settings import SettingsConfigDict
 #pydantic is used for settings management and validation.
-#allows to define data models using pyton classes with type annotations.
+#allows to define data models using python classes with type annotations.
 #Used in FastAPI for request validation and settings management.
 import secrets
 #secrets is used for generating cryptographically strong random numbers suitable for managing data such as passwords, account authentication, and security tokens.

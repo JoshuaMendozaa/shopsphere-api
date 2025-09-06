@@ -43,10 +43,34 @@ docker-up:
 docker-down:
 	docker-compose down
 
-#run database migrations
+# Database migration commands
 migrate:
 	alembic upgrade head
-
-# Create a new database migration
+	
 create-migration:
+	@if [ -z "$(name)" ]; then \
+		echo "Usage: make create-migration name='your migration message'"; \
+		exit 1; \
+	fi
 	alembic revision --autogenerate -m "$(name)"
+
+migration-history:
+	alembic history --verbose
+
+migration-current:
+	alembic current
+
+downgrade:
+	@if [ -z "$(to)" ]; then \
+		echo "Usage: make downgrade to=revision_id"; \
+		exit 1; \
+	fi
+	alembic downgrade $(to)
+
+# Database utilities
+db-reset:
+	alembic downgrade base
+	alembic upgrade head
+
+db-seed:
+	python scripts/seed_db.py
